@@ -1,0 +1,13 @@
+/* The extension popup is a fixed 380 x 600 box. On the phone the screens fill the display and stay clear of the notch and
+   the home bar; everything inside lays out exactly as in the popup, just taller. */
+html, body, #root { width: 100%; height: 100%; }
+body { overscroll-behavior: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+input, textarea { -webkit-user-select: text; user-select: text; }
+.screen { top: env(safe-area-inset-top); bottom: env(safe-area-inset-bottom); }
+.testnet { top: calc(22px + env(safe-area-inset-top)); }
+/* Sent floods the whole display in the brand colour, edge to edge. */
+.screen.sent { top: 0; bottom: 0; padding-top: calc(18px + env(safe-area-inset-top)); padding-bottom: env(safe-area-inset-bottom); }
+.paste { height: 40px; padding: 0 15px; border-radius: 13px; background: #1A1A1A; color: var(--mid); font-size: 15px; }
+/* With the test-network banner across the top, every screen starts below it. */
+body.testmode .screen { top: calc(env(safe-area-inset-top) + 34px); }
+body.testmode .screen.sent { top: 0; padding-top: calc(52px + env(safe-area-inset-top)); }

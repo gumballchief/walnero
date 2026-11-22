@@ -1,0 +1,46 @@
+{
+  "name": "walnero-extension",
+  "description": "Walnero browser wallet",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "build:test": "node scripts/copy-assets.mjs && wxt build --mode test",
+    "build:mainnet": "node scripts/copy-assets.mjs && wxt build --mode mainnet",
+    "build:mainnet-test": "node scripts/copy-assets.mjs && wxt build --mode mainnet-test",
+    "test": "playwright test",
+    "scan:build": "cd scan-wasm && cargo build --release && cd .. && node -e \"require('fs').copyFileSync('scan-wasm/target/wasm32-unknown-unknown/release/walnero_scan.wasm','scan-wasm/walnero_scan.wasm')\"",
+    "prebuild": "node scripts/copy-assets.mjs",
+    "predev": "node scripts/copy-assets.mjs",
+    "build:phone": "node scripts/copy-assets.mjs && vite build --config vite.app.config.ts --mode mainnet && node -e \"const fs = require('fs'); fs.rmSync('../ios/web', { recursive: true, force: true }); fs.cpSync('.output/phone-web', '../ios/web', { recursive: true })\""
+  },
+  "dependencies": {
+    "@noble/hashes": "2.4.0",
+    "@scure/bip32": "2.4.0",
+    "@scure/bip39": "2.4.0",
+    "@scure/btc-signer": "2.4.1",
+    "assert": "2.1.0",
+    "libsodium-wrappers-sumo": "0.8.4",
+    "lightweight-charts": "5.2.1",
+    "monero-ts": "0.11.21",
+    "path-browserify": "1.0.1",
+    "qrcode": "1.5.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@noble/curves": "2.4.0",
+    "@playwright/test": "1.64.1",
+    "@types/libsodium-wrappers-sumo": "0.7.8",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@wxt-dev/module-react": "1.2.2",
+    "jsqr": "1.4.0",
+    "pngjs": "7.0.0",
+    "typescript": "5.9.3",
+    "wxt": "0.21.5"
+  }
+}

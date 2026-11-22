@@ -1,0 +1,114 @@
+name: Build Walnero for iPhone
+
+defaults:
+  run:
+    working-directory: ios
+
+on:
+  push:
+  workflow_dispatch:
+
+# One app. Real Monero and the free test network are switched inside it, under Settings, Developer settings.
+jobs:
+  ipa:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build the wallet's web bundle into ios/web
+        working-directory: extension
+        run: |
+          npm ci
+          npm run build:phone
+
+      - name: Make the Xcode project
+        run: |
+          xcodebuild -version
+          brew install xcodegen
+          xcodegen generate
+
+      - name: "Build (not signed, Sideloadly signs it with your Apple ID)"
+        run: |
+          set -o pipefail
+          xcodebuild -project Walnero.xcodeproj -scheme Walnero -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            SYMROOT="$PWD/build" build 2>&1 | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          test -d build/Release-iphoneos/Walnero.app
+          test -f build/Release-iphoneos/Walnero.app/web/index.html
+          /usr/libexec/PlistBuddy -c "Print :CFBundleDisplayName" -c "Print :CFBundleShortVersionString" build/Release-iphoneos/Walnero.app/Info.plist
+
+      - name: Package the .ipa
+        run: |
+          mkdir -p Payload
+          cp -R build/Release-iphoneos/Walnero.app Payload/
+          zip -qry Walnero.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Walnero-ipa
+          path: ios/Walnero.ipa
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-log
+          path: ios/build.log
+          if-no-files-found: ignore
+
+  simulator:
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build the wallet's web bundle into ios/web
+        working-directory: extension
+        run: |
+          npm ci
+          npm run build:phone
+
+      - name: Make the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Make a wallet on an iPhone simulator, hide the balance, open Monero, switch networks and back
+        run: |
+          set -o pipefail
+          DEVICE=$(xcrun simctl list devices available -j | python3 -c "
+          import json, sys
+          d = json.load(sys.stdin)['devices']
+          print(next(x['udid'] for r in sorted(d, reverse=True) if 'iOS' in r for x in d[r] if x['name'].startswith('iPhone')))")
+          echo "simulator $DEVICE"
+          xcodebuild test -project Walnero.xcodeproj -scheme Walnero -destination "id=$DEVICE" \
+            -resultBundlePath Results.xcresult 2>&1 | tee test.log | grep -E "error:|Test Case|XCTAssert|TEST (SUCCEEDED|FAILED)" || true
+
+      - name: Pull the screenshots out
+        if: always()
+        run: |
+          mkdir -p shots
+          xcrun xcresulttool export attachments --path Results.xcresult --output-path shots || true
+          ls -la shots
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simulator-shots
+          path: |
+            ios/shots
+            ios/test.log
+          if-no-files-found: ignore
+
+      - name: Did it pass?
+        run: grep -q "TEST SUCCEEDED" test.log

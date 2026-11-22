@@ -1,0 +1,7 @@
+build/
+Payload/
+*.ipa
+Walnero.xcodeproj/
+Results.xcresult/
+shots/
+dist/

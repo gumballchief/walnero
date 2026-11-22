@@ -1,0 +1,38 @@
+# dependencies and build output
+node_modules/
+.output/
+.wxt/
+dist/
+build/
+target/
+target-plain/
+DerivedData/
+*.xcodeproj/
+test-results/
+playwright-report/
+test-shots/
+*.log
+
+# generated: npm run build:phone writes the iPhone app's web bundle here
+ios/web/
+
+# feed output
+feed/data/
+
+# local test wallets and receipts: never commit a seed, even a test one
+extension/tests/stagenet-test-wallet.json
+extension/tests/stagenet-second-wallet.json
+extension/tests/faucet-claim.json
+.walnero/
+
+# secrets
+.env
+.env.*
+*.pem
+
+# editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.vercel/

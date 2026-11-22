@@ -1,0 +1,21 @@
+# Copy of curve25519-dalek 4.1.3 from crates.io, source unchanged. Only this manifest differs: no build script, because
+# Windows Smart App Control won't run an unsigned helper exe. The two settings it would have chosen are in .cargo/config.toml.
+[package]
+name = "curve25519-dalek"
+version = "4.1.3"
+edition = "2021"
+autobenches = false
+autotests = false
+build = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cfg-if = "1"
+subtle = { version = "2.6", default-features = false }
+
+[features]
+default = ["precomputed-tables"]
+alloc = []
+precomputed-tables = []

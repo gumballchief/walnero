@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Walnero</title>
+  <meta name="description" content="Walnero is a Monero wallet for Chrome, iPhone and Android that opens in seconds. Your keys never leave your device.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="art/w-sky.png">
+  <link rel="preload" href="fonts/GeistSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Walnero home"><img src="art/w-sky.png" alt=""><span>Walnero</span></a>
+    <nav class="links" aria-label="Sections"><a href="#speed">Speed</a><a href="#features">Features</a><a href="#keys">Privacy</a></nav>
+    <div class="top-cta">
+      <a class="cut ghost" href="#get"><span>Download</span></a>
+      <a class="cut" href="#get" data-chrome-link><span>Add to Chrome</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Every phone on this page is the real Walnero UI rebuilt in code, played by a finger. Nothing is a video or a picture. -->
+    <section class="hero">
+      <div class="hero-copy">
+        <h1><span class="l1">Monero</span><span class="l2">in seconds.</span></h1>
+        <p class="lede">The Monero wallet that's open before you finish typing your password. For Chrome, iPhone and Android, and your keys never leave your device.</p>
+        <div class="stores" data-stores></div>
+      </div>
+      <div class="stage hero-stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="open"></div></div>
+    </section>
+
+    <section class="speed band" id="speed">
+      <div class="band-in">
+        <h2>Open. Unlocked. Up to date.</h2>
+        <div class="stats">
+          <div><p class="reel-num" data-num="0.2"><small>s</small></p><p class="cap">from a click to the unlock screen</p></div>
+          <div><p class="reel-num" data-num="0.3"><small>s</small></p><p class="cap">from your password to your balance</p></div>
+          <div><p class="reel-num" data-num="8"><small>s</small></p><p class="cap">to catch up after a month away</p></div>
+        </div>
+        <div class="live"><span class="dot"></span><span>Monero block</span><b class="reel-num small" data-block>0000000</b><span class="live-note" data-block-note>connecting</span></div>
+        <p class="fine">Times measured in the Chrome extension on an everyday laptop. A normal Monero wallet reads every block one by one.</p>
+      </div>
+    </section>
+
+    <div id="features">
+      <section class="feature">
+        <div class="f-copy">
+          <h2>See all of<br><span>your Monero.</span></h2>
+          <p>Tap Monero for its own screen: today's price, a chart you can drag through, market info and every payment you've made.</p>
+          <ul class="ticks"><li>From today back to 2016</li><li>The price under your finger</li><li>Market cap, supply, all-time high</li></ul>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="token"></div></div>
+      </section>
+
+      <section class="feature flip">
+        <div class="f-copy">
+          <h2>Paying is<br><span>a sentence.</span></h2>
+          <p>Type the amount, pick a name, slide. Walnero shows the fee before anything leaves, and the payment lands in the next block, about two minutes.</p>
+          <ul class="ticks"><li>Its own keypad, no fumbling</li><li>Saved names instead of long addresses</li><li>The fee shown before you slide</li></ul>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="send"></div></div>
+      </section>
+
+      <section class="feature">
+        <div class="f-copy">
+          <h2>Every payment,<br><span>every detail.</span></h2>
+          <p>Tap any payment for its date, status, fee, block and ID, with a link to look it up on XMRScan.</p>
+          <ul class="ticks"><li>Copy the transaction ID in one tap</li><li>Ten checks until it's settled</li><li>Monero hides who sent it, and so do we</li></ul>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="tx"></div></div>
+      </section>
+
+      <section class="feature flip">
+        <div class="f-copy">
+          <h2>A fresh address<br><span>every time.</span></h2>
+          <p>Every Receive gives you a new address, all going into the same wallet, so the people paying you can't connect your payments to each other.</p>
+          <ul class="ticks"><li>QR code and copy button</li><li>Ready before the wallet finishes opening</li></ul>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="receive"></div></div>
+      </section>
+
+      <section class="feature">
+        <div class="f-copy">
+          <h2>Hidden<br><span>in a tap.</span></h2>
+          <p>Tap your balance and every amount in the wallet turns to stars. Tap it again to bring them back. Useful on a train.</p>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="hide"></div></div>
+      </section>
+
+      <section class="feature flip">
+        <div class="f-copy">
+          <h2>Names,<br><span>not addresses.</span></h2>
+          <p>Save an address once as @kestrel and pay it by name from then on. Your names live on your device only, so nobody else can look them up.</p>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="names"></div></div>
+      </section>
+
+      <section class="feature">
+        <div class="f-copy">
+          <h2>Locked with<br><span>your face.</span></h2>
+          <p>On iPhone, Face ID opens Walnero. Two misses and it asks for your password, like your banking app. It locks itself when you walk away.</p>
+          <ul class="ticks"><li>Auto-lock after 1, 5, 15 or 60 minutes</li><li>Recovery words only behind your password</li></ul>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="faceid"></div></div>
+      </section>
+
+      <section class="feature flip">
+        <div class="f-copy">
+          <h2>Try everything<br><span>for free.</span></h2>
+          <p>Switch on the test network in Developer settings, grab free test coins from the faucet and practise before you touch real Monero. Your real wallet stays exactly as it was.</p>
+        </div>
+        <div class="stage" aria-hidden="true"><i class="slab"></i><div class="phone" data-demo="testnet"></div></div>
+      </section>
+
+      <section class="feature wide">
+        <div class="f-copy">
+          <h2>Pay on websites<br><span>from Chrome.</span></h2>
+          <p>When a site asks for Monero, Walnero opens with the amount and the site's real name filled in. Check it, slide, done.</p>
+        </div>
+        <div class="stage browser-stage" aria-hidden="true"><div class="browser" data-demo="web"></div></div>
+      </section>
+    </div>
+
+    <section class="keys" id="keys">
+      <div class="keys-copy">
+        <h2>Your keys stay<br><span>on your device.</span></h2>
+        <p>Walnero's servers only send public blockchain data, the same to everyone. Nobody can see what you hold or who you pay, including us.</p>
+      </div>
+      <div class="rows" data-rows>
+        <div class="row"><span class="g"><em style="--u:url(app/key.svg)"></em></span><div><b>Recovery words</b><span>25 words bring your wallet back on any device.</span></div></div>
+        <div class="row"><span class="g"><em style="--u:url(app/shield-check.svg)"></em></span><div><b>Full check</b><span>Reads every block itself, whenever you want proof.</span></div></div>
+        <div class="row"><span class="g"><em style="--u:url(app/lightning.svg)"></em></span><div><b>Fast open</b><span>Checked against independent Monero servers every time.</span></div></div>
+        <div class="row"><span class="g"><em style="--u:url(app/globe-hemisphere-west.svg)"></em></span><div><b>Offline</b><span>No signal? You still see your last balance.</span></div></div>
+      </div>
+    </section>
+
+    <section class="get band" id="get">
+      <div class="band-in">
+        <h2>Take Monero with you.</h2>
+        <div class="stores on-sky" data-stores></div>
+        <p class="soon-note" data-soon-note>Walnero is on its way to the Chrome Web Store, the App Store and Google Play.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span><img src="art/w-sky.png" alt="">Walnero</span>
+    <span>An independent wallet, not affiliated with the Monero Project.</span>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

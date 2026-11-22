@@ -1,0 +1,17 @@
+[package]
+name = "walnero_scan"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+curve25519-dalek = { path = "vendor/curve25519-dalek", default-features = false, features = ["precomputed-tables"] }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true

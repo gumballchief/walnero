@@ -1,0 +1,56 @@
+name: Walnero
+options:
+  deploymentTarget:
+    iOS: "16.4"
+  createIntermediateGroups: true
+targets:
+  Walnero:
+    type: application
+    platform: iOS
+    sources:
+      - Walnero
+      # The wallet itself, built from the extension's code: npm run build:phone, then copied here.
+      - path: web
+        type: folder
+    info:
+      path: Walnero/Info.plist
+      properties:
+        CFBundleDisplayName: $(WALNERO_DISPLAY_NAME)
+        NSFaceIDUsageDescription: Walnero uses Face ID to unlock your wallet instead of your password.
+        CFBundleShortVersionString: "0.8.0"
+        CFBundleVersion: "8"
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIRequiresFullScreen: true
+        UIUserInterfaceStyle: Dark
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.walnero.app
+        PRODUCT_NAME: Walnero
+        WALNERO_DISPLAY_NAME: Walnero
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+  WalneroUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [WalneroUITests]
+    dependencies:
+      - target: Walnero
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.walnero.uitests
+        TEST_TARGET_NAME: Walnero
+        GENERATE_INFOPLIST_FILE: "YES"
+        SWIFT_VERSION: "5.0"
+schemes:
+  Walnero:
+    build:
+      targets:
+        Walnero: all
+        WalneroUITests: [test]
+    test:
+      targets: [WalneroUITests]

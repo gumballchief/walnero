@@ -1,0 +1,14 @@
+node_modules/
+.output/
+.wxt/
+test-results/
+playwright-report/
+*.log
+public/engine/
+public/fonts/
+public/icon/
+public/brand/
+public/coins/
+test-shots/*.tmp
+public/icons/
+public/scan/walnero_scan.wasm

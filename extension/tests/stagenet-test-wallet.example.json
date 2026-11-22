@@ -1,0 +1,5 @@
+{
+  "note": "Copy to stagenet-test-wallet.json (and stagenet-second-wallet.json for a second wallet). Use a throwaway STAGENET wallet only: its coins have no value. These files are git-ignored. Never put a real seed here.",
+  "seed": "your twenty five stagenet seed words go here",
+  "address": "5..."
+}
