@@ -463,7 +463,7 @@ const onView = (el, fn, threshold = 0.3) => new IntersectionObserver((entries, i
 for (const f of $$('.feature')) onView(f, () => f.classList.add('seen'), 0.2);
 for (const num of $$('.speed .stats .reel-num')) { makeReels(num, num.dataset.num); setZero(num); }
 onView($('.speed'), async () => { for (const num of $$('.speed .stats .reel-num')) { roll(num, num.dataset.num); await sleep(calm ? 0 : 220); } });
-onView($('[data-rows]'), () => $('[data-rows]').classList.add('dealt'));
+for (const rows of $$('[data-rows]')) onView(rows, () => rows.classList.add('dealt'));
 
 // The live chain: real block numbers from public Monero servers.
 const NODES = ['https://xmr-node.cakewallet.com:18081', 'https://monero.definitelynotafed.com', 'https://xmr.support:18089'];
