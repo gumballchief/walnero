@@ -14,7 +14,8 @@
     "scan:build": "cd scan-wasm && cargo build --release && cd .. && node -e \"require('fs').copyFileSync('scan-wasm/target/wasm32-unknown-unknown/release/walnero_scan.wasm','scan-wasm/walnero_scan.wasm')\"",
     "prebuild": "node scripts/copy-assets.mjs",
     "predev": "node scripts/copy-assets.mjs",
-    "build:phone": "node scripts/copy-assets.mjs && vite build --config vite.app.config.ts --mode mainnet && node -e \"const fs = require('fs'); fs.rmSync('../ios/web', { recursive: true, force: true }); fs.cpSync('.output/phone-web', '../ios/web', { recursive: true })\""
+    "build:phone": "node scripts/copy-assets.mjs && vite build --config vite.app.config.ts --mode mainnet && node -e \"const fs = require('fs'); fs.rmSync('../ios/web', { recursive: true, force: true }); fs.cpSync('.output/phone-web', '../ios/web', { recursive: true })\"",
+    "notices": "node scripts/notices.mjs"
   },
   "dependencies": {
     "@noble/hashes": "2.4.0",

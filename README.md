@@ -79,7 +79,22 @@ with your own stagenet wallet. Never put a real seed in a file in this repo.
 
 Please report security problems privately, not in a public issue. See [SECURITY.md](SECURITY.md).
 
+## Built on
+
+Walnero's wallet engine is **wallet2**, the Monero Project's own wallet code (the same engine behind the official
+Monero wallets, Cake Wallet and Feather), run in the browser and on iPhone through
+[monero-ts](https://github.com/woodser/monero-ts). Thank you to the Monero Project and to woodser.
+
+- [Monero](https://github.com/monero-project/monero): wallet2, BSD-3-Clause, Copyright (c) 2014-2024 The Monero Project
+- [monero-ts](https://github.com/woodser/monero-ts): MIT, Copyright (c) woodser
+- [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek): inside the block scanner, BSD-3-Clause
+- [TradingView Lightweight Charts](https://www.tradingview.com/lightweight-charts/): price charts, Apache 2.0
+- [Phosphor Icons](https://phosphoricons.com) (MIT) and the [Geist](https://vercel.com/font) fonts (SIL Open Font License)
+
+Every library that ships in the apps, with its full license, is listed in
+[`extension/public/THIRD-PARTY-NOTICES.txt`](extension/public/THIRD-PARTY-NOTICES.txt), which is included in every
+extension and iPhone build. Regenerate it with `node scripts/notices.mjs` in `extension/` after changing dependencies.
+
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Third-party parts keep their own licences: monero-ts (MIT), curve25519-dalek (BSD-3),
-Geist fonts (OFL), Phosphor icons (MIT), TradingView Lightweight Charts (Apache 2.0).
+Walnero is MIT licensed, see [LICENSE](LICENSE). The projects above keep their own licenses.
